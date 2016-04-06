@@ -12,11 +12,4 @@ class PostsController < ApplicationController
   def edit
   end
 
-  def self.spam_check
-    post.each do |item|
-      if item.id % 5 == 1
-        item.title = 'SPAM'
-      end
-    end
-  end
 end
