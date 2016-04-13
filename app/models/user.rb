@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   def capitalize_name
+    return unless name.present?
     split_name = []
     new_name = []
     split_name = self.name.split
