@@ -13,8 +13,9 @@
     </p>
     <div>
       <h3>Comments</h3>
-      <%= render partial: "comments/comment", locals: { comments: @topic.comments } %>
+      <%= render @topic.comments %>
     </div>
+    <h3> Posts </h3>
     <% @topic.posts.each do |post| %>
       <%= render @topic.posts %>
       <%= render partial: "labels/list", locals: { labels: post.labels } %>

@@ -40,22 +40,20 @@ end
 posts = Post.all
 
 # Create Comments for topics
-10.times do
+100.times do
   Comment.create!(
     user: users.sample,
-    commentable_id: 1,
-    commentable_type: "Topic",
+    commentable: topics.sample,
     body: RandomData.random_paragraph
   )
 end
 
 # Create Comments for posts
 # #3
-10.times do
+100.times do
   Comment.create!(
     user: users.sample,
-    commentable_id: 1,
-    commentable_type: "Post",
+    commentable: posts.sample,
     body: RandomData.random_paragraph
   )
 end
