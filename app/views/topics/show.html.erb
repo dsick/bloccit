@@ -11,8 +11,10 @@
       <br />
       <%= @topic.description %>
     </p>
+    <h2>Posts</h2>
     <% @topic.posts.each do |post| %>
-      <%= render @topic.posts %>
+      <%= render partial: 'votes/voter', locals: { post: post } %>
+      <%= render partial: "posts/post", locals: { post: post } %>
       <%= render partial: "labels/list", locals: { labels: post.labels } %>
     <% end %>
   </div>
