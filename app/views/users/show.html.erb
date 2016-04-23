@@ -21,8 +21,32 @@
   </div>
 </div>
 
-<h2>Posts</h2>
-<%= render @user.posts %>
+<% if @user.has_posts %>
+  <h2>Posts</h2>
+  <%= render @user.posts %>
+<% else %>
+  <p><%= @user.name %> has not submitted any posts yet.</p>
+<% end %>
 
-<h2>Comments</h2>
-<%= render @user.comments %>
+<% if @user.has_comments %>
+  <h2>Comments</h2>
+  <%= render @user.comments %>
+<% else %>
+  <p><%= @user.name %> has not submitted any comments yet.</p>
+<% end %>
+
+<% if @user.has_favorited_posts %>
+<h2>User's Favorited Posts</h2>
+  <% @favorites.each do |favorite| %>
+      <div>
+        <%= Post.where(id: favorite.post_id).select("title").first %>
+        <small>
+          <%= Favorite.where(post_id: favorite.post_id).count %> Favorites,
+          <%= Vote.where(post_id: favorite.post_id).count %> Votes,
+          <%= pluralize(@user.comments.count, 'comment') %>
+        </small>
+      </div>
+  <% end %>
+<% else %>
+  <p><%= @user.name %> has not favorited any posts yet.</p>
+<% end %>
