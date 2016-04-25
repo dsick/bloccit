@@ -93,6 +93,7 @@ RSpec.describe Post, type: :model do
     it "calls create vote after post is created" do
       post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_sentence, user: user)
       expect(post).to receive(:create_vote)
+      post.save
     end
 
     it "associates vote with user of the post" do
