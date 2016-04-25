@@ -39,8 +39,8 @@ class Post < ActiveRecord::Base
     update_attribute(:rank, new_rank)
   end
 
-  def favorites
-    favortes.where(post_id: self.id).count
+  def num_favorites
+    favorites.where(post_id: self.id).count
   end
 
 end
