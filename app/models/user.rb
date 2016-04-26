@@ -32,28 +32,16 @@ class User < ActiveRecord::Base
     "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
   end
 
-  def has_posts
-    if Post.where(user_id: self.id).blank?
-      return false
-    else
-      return true
-    end
+  def has_posts?
+    Post.present?
   end
 
-  def has_favorited_posts
-    if Favorite.where(user_id: self.id).blank?
-      return false
-    else
-      return true
-    end
+  def has_favorited_posts?
+    Favorite.present? 
   end
 
-  def has_comments
-    if Comment.where(user_id: self.id).blank?
-      return false
-    else
-      return true
-    end
+  def has_comments?
+    Comment.present?
   end
 
 end

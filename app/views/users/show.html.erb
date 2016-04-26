@@ -21,28 +21,34 @@
   </div>
 </div>
 
-<% if @user.has_posts %>
+<% if @user.has_posts? %>
   <h2>Posts</h2>
   <%= render @user.posts %>
 <% else %>
   <p><%= @user.name %> has not submitted any posts yet.</p>
 <% end %>
 
-<% if @user.has_comments %>
+<% if @user.has_comments? %>
   <h2>Comments</h2>
   <%= render @user.comments %>
 <% else %>
   <p><%= @user.name %> has not submitted any comments yet.</p>
 <% end %>
 
-<% if @user.has_favorited_posts %>
+<% if @user.has_favorited_posts? %>
 <h2>User's Favorited Posts</h2>
   <% @favorites.each do |favorite| %>
-      <div>
-        <%= Post.where(id: favorite.post_id).select("title").first %>
+      <% avatar_url = @user.avatar_url(128) %>
+      <% if avatar_url %>
+      <div class="media-left">
+
+        <%= image_tag avatar_url, class: 'media-object grav' %>
+      </div>
+      <% end %>
+      <div class="user-post">
+        <%= favorite.post.title %>
         <small>
-          <%= Favorite.where(post_id: favorite.post_id).count %> Favorites,
-          <%= Vote.where(post_id: favorite.post_id).count %> Votes,
+          <%= Vote.where(post_id: favorite.post_id).count %> votes,
           <%= pluralize(@user.comments.count, 'comment') %>
         </small>
       </div>
