@@ -93,7 +93,7 @@ RSpec.describe User, type: :model do
 
   describe "invalid user" do
     let(:user_with_invalid_name) { build(:user, name: "") }
-     let(:user_with_invalid_email) { build(:user, email: "") }
+    let(:user_with_invalid_email) { build(:user, email: "") }
 
     it "should be an invalid user due to blank name" do
       expect(user_with_invalid_name).to_not be_valid
@@ -121,6 +121,12 @@ RSpec.describe User, type: :model do
       favorite = user.favorites.where(post: @post).create
       # #3
       expect(user.favorite_for(@post)).to eq(favorite)
+    end
+  end
+
+  describe "#generate_auth_token" do
+    it "creates a token" do
+      expect(user.auth_token).to_not be_nil
     end
   end
 
