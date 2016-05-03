@@ -18,6 +18,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'shoulda'
   gem 'factory_girl_rails', '~> 4.0'
+  gem 'byebug'
+  gem 'better_errors'
+  gem "binding_of_caller"
 end
 
 # Use SCSS for stylesheets
